@@ -58,7 +58,7 @@ if (usoCPU < 70 && usoRam < 70)
 {
     console.log('Status: Sistema Saudável.');
 }
-else if (usoCPU >= 70 && usoCPU <= 89 && usoRam >= 70 && usoRam <= 89)
+else if (usoCPU <= 89 || usoRam <= 89)
 {
     console.log('Alerta: Consumo elevado, monitorar." (Dica: Pelo menos um deles está alto, mas nenhum chegou a 90%).');
 }
@@ -80,17 +80,17 @@ const rendaMensal = +prompt('Digite sua renda mensal:');
 const valorParcela = +prompt('Digite o valor da parcela');
 const scoreSerasa = +prompt('Digite o seu Score do Serasa:');
 
-valorParcela /= 100;
+const percentualComprometido = (valorParcela / rendaMensal) * 100;
 
-if (rendaMensal <= 0 || !(scoreSerasa >= 0 || scoreSerasa <=1000))
+if (rendaMensal <= 0 || !(scoreSerasa >= 0 || scoreSerasa > 1000))
 {
     console.log('Erro: Dados financeiros inválidos.');
 }
-else if (valorParcela > 30 || scoreSerasa < 400)
+else if (percentualComprometido > 30 || scoreSerasa < 400)
 {
     console.log('Crédito negado: Risco elevado ou renda comprometida.');
 }
-else if (valorParcela >= 0 && scoreSerasa >= 400 && scoreSerasa <= 799)
+else if (percentualComprometido >= 0 && scoreSerasa >= 400 && scoreSerasa <= 799)
 {
     console.log('Crédito aprovado: Taxa de juros padrão.');
 }
@@ -180,7 +180,7 @@ else if (media > 24 && modoEconomia == true)
 {
     console.log('Aviso: Temperatura alta, mas refrigeração máxima limitada pelo Modo Economia.');
 }
-else (media > 24 && modoEconomia == false)
+else
 {
     console.log('Perigo: Ativando resfriamento de emergência!');
 }
@@ -207,11 +207,11 @@ else if (valorCarrinho >= 100 && valorCarrinho <= 299.99)
 }
 else if (valorCarrinho >= 300 && clientePrime == false)
 {
-    console.log('Total: R$', valorCarrinho);
+    console.log('Total: R$', (valorCarrinho * 0.85));
 }
 else
 {
-    console.log('Total: R$', valorCarrinho);
+    console.log('Total: R$', (valorCarrinho * 0.75));
 }
 
 
@@ -228,7 +228,7 @@ let total;
 
 const saldoLiquido = kwhConsumido - kwhGeradoSolar;
 
-if (kwhConsumido < 0 && kwhGeradoSolar < 0 || tarifaBaseKwh <= 0)
+if (kwhConsumido < 0 || kwhGeradoSolar < 0 || tarifaBaseKwh <= 0)
 {
     console.log('Erro de leitura: Valores de medição ou tarifa inválidos.');
 }
