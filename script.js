@@ -62,7 +62,7 @@ else if (usoCPU <= 89 || usoRam <= 89)
 {
     console.log('Alerta: Consumo elevado, monitorar." (Dica: Pelo menos um deles está alto, mas nenhum chegou a 90%).');
 }
-else if (usoCPU < 90 && usoRam < 90)
+else if (usoCPU >= 90 && usoRam >= 90)
 {
     console.log('CRÍTICO: Escalando novos servidores imediatamente!');
 }
@@ -82,7 +82,7 @@ const scoreSerasa = +prompt('Digite o seu Score do Serasa:');
 
 const percentualComprometido = (valorParcela / rendaMensal) * 100;
 
-if (rendaMensal <= 0 || !(scoreSerasa >= 0 || scoreSerasa > 1000))
+if (rendaMensal <= 0 || scoreSerasa >= 0 || scoreSerasa > 1000)
 {
     console.log('Erro: Dados financeiros inválidos.');
 }
@@ -235,7 +235,7 @@ if (kwhConsumido < 0 || kwhGeradoSolar < 0 || tarifaBaseKwh <= 0)
 else if (saldoLiquido <= 0)
 {
     creditoAcumulado = (Math.abs(saldoLiquido));
-    console.log('Crédito gerado:', credito, 'kWh. Fatura mínima: R$ 50,00.');
+    console.log('Crédito gerado:', creditoAcumulado, 'kWh. Fatura mínima: R$ 50,00.');
 }
 else if (saldoLiquido >= 1 && saldoLiquido <= 150)
 {
